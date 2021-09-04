@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Тест - стр2</title>
+	<link rel="stylesheet" type="text/css" href="assets/bulma.min.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&display=swap" rel="stylesheet">
+	<style type="text/css">
+		body, html {
+			padding: 3px;
+			background-color: #181818;
+			background-image: -webkit-repeating-radial-gradient(center center, #2C2C2C, #2C2C2C 2px, transparent 2px, transparent 100%);
+			background-image: -moz-repeating-radial-gradient(center center, #2C2C2C, #2C2C2C 2px, transparent 2px, transparent 100%);
+			background-image: -ms-repeating-radial-gradient(center center, #2C2C2C, #2C2C2C 2px, transparent 2px, transparent 100%);
+			background-image: repeating-radial-gradient(center center, #2C2C2C, #2C2C2C 2px, transparent 2px, transparent 100%);
+			-webkit-background-size: 30px 30px;
+			-moz-background-size: 30px 30px;
+			background-size: 30px 30px;
+		}
+		* {
+			font-family: 'Montserrat';
+		}
+		.section, .container, .columns {
+			min-height: 100vh;
+		}
+		.say-hey {
+			display: flex;
+			flex-direction: row;
+			justify-content: right;
+		}
+		@media screen and (max-width: 768px) {
+			.say-hey {
+				flex-direction: column;
+			}
+			.mobile-margin {
+				margin-top: 5rem;
+				margin-bottom: 15rem;
+			}
+			.say-hey-block {
+				position: absolute;
+				bottom: 0;
+			}
+		}
+		@keyframes levitate {
+			0% {margin-top: 0%}
+			50% {margin-top: 10%}
+			100% {margin-top: 0%}
+		}
+	</style>
+</head>
+<body>
+	<section class="section py-0">
+		<div class="container py-0">
+			<div class="columns py-0">
+				<div class="column is-5 py-5 is-flex is-justify-content-center is-flex-direction-column">
+					<h1 class="has-text-white is-size-1">Yamaguchi <br> Voice Control </h1>
+					<p class="has-text-white mt-3">Вы можете управлять программами массажа или самим креслом с помощью голосовых команд, приведённых ниже. Коснитесь кратковременно кнопки голосового управления, расположенной на левом подлокотнике, для запуска сеанса голосового управления.</p>
+					<p class="mt-3 has-text-white">Произнесите одну из доступных команд. Если произнесённая команда распознана, вы услышите ответ и кресло приступит к выполнению запроса.</p>
+					<div class="say-hey-block">
+						<p class="is-size-2 has-text-white" style="font-weight: 900">Скажи:</p>
+						<div class="say-hey">
+							<p class="is-uppercase is-size-1 has-text-white has-text-left" style="font-weight: 900">«Окей,</p>
+							<p class="is-uppercase is-size-1 has-text-white has-text-right" style="font-weight: 900">ямагучи»</p>
+						</div>
+					</div>
+				</div>
+				<div class="column is-7">
+					<div class="columns">
+						<div class="column is-4 is-flex is-align-items-center is-justify-content-center is-relative">
+							<img id="hole" src="images/hole.png" style="width: 100%;margin-top:460px;position: absolute;">
+							<div style="overflow: hidden;height: 520px;">
+								<img id="woman" src="images/woman.png" style="height: 90%;z-index:2">
+							</div>
+						</div>
+						<div class="column is-8 is-flex is-align-items-center mobile-margin">
+							<img src="images/phone.png" style="width: 100%;">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.6/plugins/animation.gsap.js"></script>
+<script type="text/javascript">
+	let animHole = new TimelineMax();
+
+	animHole
+	.set('#hole', {scaleX: 0})
+	.delay(3)
+	.to('#hole', 0.3, {scaleX: 1.4})
+	.to('#hole', 5, {scaleX: 0.9})
+
+	let animWoman = new TimelineMax();
+
+	animWoman
+	.set('#woman', {marginTop: '350%'})
+	.delay(3)
+	.to('#woman', 2, {marginTop: '3%'})
+	.call(levitate);
+
+	function levitate() {
+		$('#woman').css('animation','5s ease-in infinite levitate');
+	}
+</script>
+</html>
